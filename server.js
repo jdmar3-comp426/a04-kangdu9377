@@ -6,7 +6,6 @@ var db = require('./database.js')
 // Require md5 MODULE
 var md5 = require("md5")
 // Make Express use its own built-in body parser
-var bodyParser = require("body-parser");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -25,7 +24,11 @@ app.get("/app/", (req, res, next) => {
 // Define other CRUD API endpoints using express.js and better-sqlite3
 
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-
+app.post("app/new/", (req, res)=>{
+	const stmt = db.prepare('INSERT INTO userinfo (user, pass) VALUES (?,?)');
+	const info = stmt.run(req.body.user,req.body.pass);
+	res.status(201).send(info.changes+ " record created: ID "+ info.lastInsertRowid);
+})
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
 	const stmt = db.prepare("SELECT * FROM userinfo").all();
