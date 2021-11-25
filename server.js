@@ -17,7 +17,7 @@ app.listen(HTTP_PORT, () => {
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 // READ (HTTP method GET) at root endpoint /app/
-app.get("//", (req, res, next) => {
+app.get("/app/", (req, res, next) => {
     res.json({"message":"Your API is working! (200)"});
 	res.status(200);
 });
