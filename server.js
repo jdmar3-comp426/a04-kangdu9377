@@ -30,7 +30,7 @@ app.post("app/new/", function (req, res) {
 	}
 	const stmt = db.prepare("INSERT INTO userinfo (user, pass) VALUES (?,?)");
 	const info = stmt.run(data.user,md5(data.pass));
-	res.status(201).json({"message": info.changes+ " record created: ID "+ info.lastInsertRowid} + " (201)");
+	res.status(201).json({"message": info.changes+ " record created: ID "+ info.lastInsertRowid + " (201)"});
 })
 // READ a list of all users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users", (req, res) => {	
