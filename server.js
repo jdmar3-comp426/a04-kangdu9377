@@ -57,7 +57,7 @@ app.patch("/app/update/user/:id", (req, res) => {
 });
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
-app.delete("/app/deleting/user/:id", (req, res) => {
+app.delete("/app/delete/user/:id", (req, res) => {
     var data = {
 		id: req.params.id,
 	}
